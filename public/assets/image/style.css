@@ -416,6 +416,9 @@ transform: scaleY(1.09);
   width: 100%;
 }
 
-/* style pour la page test */
+/* style pour la page des section de page */
+.displayt{
+  color: #5dd29b;
+}
 
 

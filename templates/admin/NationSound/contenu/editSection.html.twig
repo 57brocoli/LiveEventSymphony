@@ -30,6 +30,59 @@
 						{% endfor %}
 					</section>
 				{% endif %}
+				<section>
+					{{ form_label(form.display, 'Style de mise en page' ) }}
+					<span>
+						<i class="fa-solid fa-info ms-2 mb-2 btn btn-sm border" type="button" data-bs-toggle="modal" data-bs-target="#imagesPrincipalModal"></i>
+						<section class="modal fade" id="imagesPrincipalModal" tabindex="-1" aria-labelledby="imagesPrincipalModal" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered modal-xl">
+								<div class="modal-content">
+									<article class="modal-header ">
+										<h3 class="modal-title fs-3 fw-bold" id="imagesPrincipalModal">Mise en page</h3>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</article>
+									<article class="modal-body ">
+										<h4 class='fw-bold'>Ce champ permet de définir la manière dont les élèments seront placé sur la page</h4>
+										<section class='border rounded my-2 p-2'>
+											<h4>style 1</h4>
+											<hr class='mt-0'>
+											<h4 class='fw-bold text-center'>Titre</h4>
+											<p class='text-center'>Text</p>
+											<div class='displayt text-center'></div>
+											<div class='text-center mt-2'>
+												<div class='btn btn-sm btn-primary'>boutton</div>
+											</div>
+										</section>
+										<section class='border rounded my-2 p-2'>
+											<h4>style 2</h4>
+											<hr class='mt-0'>
+											<div class='displayt text-white text-center py-3'>
+												<h4 class='fw-bold'>Titre</h4>
+												<p>Text</p>
+												<div class='btn btn-sm btn-primary'>boutton</div>
+											</div>
+										</section>
+										<section class='border rounded my-2 p-2'>
+											<h4>style 3</h4>
+											<hr class='mt-0'>
+											<h4 class='fw-bold text-center'>Titre</h4>
+											<p class='text-center'>Text</p>
+											<div class='d-flex justify-content-evenly'>
+												<div class='displayflex mx-2'></div>
+												<div class='displayflex mx-2'></div>
+												<div class='displayflex mx-2'></div>
+											</div>
+										</section>
+									</article>
+									<section class="modal-footer">
+										<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok</button>
+									</section>
+								</div>
+							</div>
+						</section>
+					</span>
+					{{ form_row(form.display) }}
+				</section>
 				{{ form_end(form) }}
 			</section>
 		</section>

@@ -425,4 +425,20 @@ transform: scaleY(1.09);
 
 /* style pour la page test */
 
-
+/* style pour la page des section de page */
+.displayt{
+  background-image: url(../image/Astronote.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: auto;
+  height: 150px;
+}
+.displayflex{
+  background-image: url(../image/Astronote.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 150px;
+  width: 150px;
+}

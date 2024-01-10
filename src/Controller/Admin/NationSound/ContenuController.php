@@ -3,17 +3,14 @@
 namespace App\Controller\Admin\NationSound;
 
 use App\Entity\Article;
-use App\Entity\BackgroundImage;
 use App\Entity\NationSound\Figure;
 use App\Entity\Image;
 use App\Entity\ImageSponsor;
-use App\Entity\Page;
 use App\Entity\NationSound\View;
 use App\Entity\Sponsor;
 use App\Entity\Billet;
 use App\Entity\FAQ;
 use App\Entity\NationSound\PageSection;
-use App\Form\PageFormType;
 use App\Form\SponsorFormType;
 use App\Form\ViewType;
 use App\Form\BilletType;
@@ -22,7 +19,6 @@ use App\Form\PageSectionType;
 use App\Form\ArticleFormType;
 use App\Repository\ArticleRepository;
 use App\Repository\EventRepository;
-use App\Repository\PageRepository;
 use App\Repository\SponsorRepository;
 use App\Repository\ViewRepository;
 use App\Repository\BilletRepository;

@@ -30,10 +30,11 @@ class PageSectionType extends AbstractType
                 'multiple' => true
             ])
             ->add('display', ChoiceType::class, [
+                'label' => false,
                 'choices'  => [
-                    'Maybe' => null,
-                    'Yes' => true,
-                    'No' => false,
+                    'style 1' => 'style1',
+                    'style 2' => 'style2',
+                    'style 3' => 'style3',
                 ]
             ])
             ->add('Valider', SubmitType::class)
