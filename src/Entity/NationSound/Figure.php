@@ -3,12 +3,19 @@
 namespace App\Entity\NationSound;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use App\Repository\FigureRepository;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: FigureRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    operations:[
+        new Get(normalizationContext:['groups' => ['getforFigure']]),
+        new GetCollection(normalizationContext:['groups' => ['getforFigure']]),
+    ]
+)]
 class Figure
 {
     #[ORM\Id]

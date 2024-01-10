@@ -3,12 +3,19 @@
 namespace App\Entity\NationSound;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use App\Repository\LinkRepository;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LinkRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    operations:[
+        new Get(normalizationContext:['groups' => ['getforLink']]),
+        new GetCollection(normalizationContext:['groups' => ['getforLink']]),
+    ]
+)]
 class Link
 {
     #[ORM\Id]

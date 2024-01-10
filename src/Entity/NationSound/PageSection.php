@@ -3,6 +3,8 @@
 namespace App\Entity\NationSound;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use App\Repository\PageSectionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -11,7 +13,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PageSectionRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    operations:[
+        new Get(normalizationContext:['groups' => ['getforPageSection']]),
+        new GetCollection(normalizationContext:['groups' => ['getforPageSection']]),
+    ]
+)]
 class PageSection
 {
     #[ORM\Id]

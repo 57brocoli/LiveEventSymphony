@@ -3,13 +3,23 @@
 namespace App\Entity;
 
 use App\Entity\Trait\CreatedAtTrait;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
 use App\Repository\RequestRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
 
 #[ORM\Entity(repositoryClass: RequestRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    // normalizationContext:['groups' => ['read:collection']],
+    operations:[
+        new Get(normalizationContext:['groups' => ['getforRequest']]),
+        new GetCollection(normalizationContext:['groups' => ['getforRequest']]),
+        new Post()
+    ]
+)]
 class Request
 {
     use CreatedAtTrait;

@@ -3,12 +3,19 @@
 namespace App\Entity;
 
 use App\Repository\ImageRepository;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ImageRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    operations:[
+        new Get(normalizationContext:['groups' => ['getforImage']]),
+        new GetCollection(normalizationContext:['groups' => ['getforImage']]),
+    ]
+)]
 class Image
 {
     #[ORM\Id]

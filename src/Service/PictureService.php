@@ -139,7 +139,7 @@ class PictureService
         }
     }
 
-    public function deleteAllsImages($images, string $featuredImage, ?string $folder = '')
+    public function deleteAllsImages($images, ?string $featuredImage, ?string $folder = '')
     {
         if ($images) {
             foreach($images as $image){
