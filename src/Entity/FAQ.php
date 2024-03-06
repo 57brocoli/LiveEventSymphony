@@ -22,15 +22,15 @@ class FAQ
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['getforSponsor'])]
+    #[Groups(['getforFAQ'])]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups(['getforSponsor'])]
+    #[Groups(['getforFAQ'])]
     private ?string $question = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups(['getforSponsor'])]
+    #[Groups(['getforFAQ'])]
     private ?string $answer = null;
 
     public function getId(): ?int

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserFormType;
 use App\Repository\ArticleRepository;
+use App\Repository\MobileUserRepository;
 use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,6 +14,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 #[Route('/users', name:'app_')]
 class UserController extends AbstractController
@@ -73,6 +76,19 @@ class UserController extends AbstractController
             'user' => $user,
             'articles' => $articles
         ]);
+    }
+    /**
+     * @Route("/users/by-email/{email}", name="get_users_by_email", methods={"GET"})
+     */
+    public function getUsersByEmail(string $email, MobileUserRepository $ur)
+    {
+        $users = $ur->findOneBy(['email'=>$email]);
+        $user = [
+            'name' => $users->getName(),
+            'createdAt' => $users->getCreatedAt(),
+            'phone' => $users->getPhone(),
+        ];
+        return $this->json($user);
     }
 
 }

@@ -7,7 +7,7 @@
 	<header id='headerEvent'>
 		{% if pageEvent is not empty %}
 			{% for background in pageEvent %}
-				<div id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-bs-ride="carousel">
+				<div id="carouselExampleAutoplaying" class="carousel slide carousel-fade p-0" data-bs-ride="carousel">
 					<div class="carousel-inner">
 						{% for images in background.backgroundImages %}
 
@@ -22,7 +22,7 @@
 		<section id='section1EventAccueil' class='d-flex flex-wrap p-4 '>
 			<article class='col-12 col-lg-7 p-4 order-lg-1 order-2' id='article1section1'>
 				<h1 class='text-center fw-bold fs-1'>Music festival</h1>
-				<p class='ms-4 mt-4 fs-5'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi consectetur accusamus vero at fugit illo odit sapiente impedit qui veritatis voluptas illum officiis, natus, sit magnam error reprehenderit! Labore magnam et pariatur eum ullam aliquid culpa tenetur esse, fuga facere praesentium quidem explicabo eius assumenda minima reprehenderit non neque voluptas optio totam, adipisci facilis ea. Provident omnis repellat.
+				<p class='mx-lg-4 mt-4 fs-5 textJustify'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi consectetur accusamus vero at fugit illo odit sapiente impedit qui veritatis voluptas illum officiis, natus, sit magnam error reprehenderit! Labore magnam et pariatur eum ullam aliquid culpa tenetur esse, fuga facere praesentium quidem explicabo eius assumenda minima reprehenderit non neque voluptas optio totam, adipisci facilis ea. Provident omnis repellat.
 				</p>
 				<ul class='d-flex flex-wrap list-unstyled mt-4'>
 					<li class='my-2'>
@@ -51,7 +51,7 @@
 		{% if events is not empty %}
 			<section>
 				<div class='container-fluid'>
-					<div class='row d-flex justify-content-around px-5 mx-5'>
+					<div class='row d-flex justify-content-around px-lg-5 mx-5'>
 						{% for event in events %}
 							<a href="{{path('app_detailEvent', {slug:event.slug})}}" class='text-decoration-none text-center eventHover col-12 col-lg-6 col-xl-3 my-3'>
 								<div class="card mx-auto d-flex flex-column justify-content-end" style="width: 18rem; height: 26rem; background-image:url('{{asset('assets/uploads/evenements/')}}{{event.featuredImage}}')" id='backgroundImgEvent'>

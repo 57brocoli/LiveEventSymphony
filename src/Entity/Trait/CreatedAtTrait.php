@@ -3,10 +3,12 @@
 namespace App\Entity\Trait;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 Trait CreatedAtTrait
 {
     #[ORM\Column(options:['default' => 'CURRENT_TIMESTAMP'])]
+    #[Groups(['getforMobileUser'])]
     private ?\DateTimeImmutable $created_at = null;
 
     public function getCreatedAt(): ?\DateTimeImmutable

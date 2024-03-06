@@ -13,7 +13,6 @@ use ApiPlatform\Metadata\ApiResource;
 
 #[ORM\Entity(repositoryClass: RequestRepository::class)]
 #[ApiResource(
-    // normalizationContext:['groups' => ['read:collection']],
     operations:[
         new Get(normalizationContext:['groups' => ['getforRequest']]),
         new GetCollection(normalizationContext:['groups' => ['getforRequest']]),

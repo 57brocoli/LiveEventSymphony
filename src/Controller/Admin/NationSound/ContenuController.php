@@ -404,7 +404,7 @@ class ContenuController extends AbstractController
 
     // Controller pour l'edition d'une page
     #[Route('/contenu/edit/{name?}/{id?}', name: 'contenu_edit')]
-    public function edit(View $view=null, $name=null, Request $request, EntityManagerInterface $em, SluggerInterface $slugger, PictureService $pictureService): Response
+    public function edit($name=null, View $view=null,  Request $request, EntityManagerInterface $em, SluggerInterface $slugger, PictureService $pictureService): Response
     {
         $new = false;
         if (!$view) {
