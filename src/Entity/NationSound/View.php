@@ -31,7 +31,6 @@ class View
     #[Groups(['getforView'])]
     private ?string $name = null;
 
-
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Groups(['getforView'])]
     private ?string $headerText = null;

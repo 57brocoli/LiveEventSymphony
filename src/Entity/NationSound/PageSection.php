@@ -39,7 +39,7 @@ class PageSection
     #[Groups(['getforView'])]
     private ?string $content = null;
 
-    #[ORM\OneToMany(mappedBy: 'pageSection', targetEntity: Figure::class)]
+    #[ORM\OneToMany(mappedBy: 'pageSection', targetEntity: Figure::class, cascade: ['remove'], orphanRemoval: true)]
     #[Groups(['getforView'])]
     private Collection $images;
 

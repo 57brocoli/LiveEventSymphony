@@ -345,7 +345,29 @@
 						<article class='border border-black rounded px-3 my-4'>
 							<div class='my-3'>
 								<a href="{{path('nationSound_contenu_edit_section', {name:pageDefaultName, id : section.id})}}" class='btn btn-success'>Modifier</a>
-								<a href="{{path('nationSound_contenu_edit_section_delete', {name:pageDefaultName, id : section.id})}}" class='btn btn-danger'>Supprimer</a>
+								{# ici #}
+								<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+									Supprimer
+								</button>
+								<!-- Modal -->
+								<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+									<div class="modal-dialog modal-dialog-centered">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h1 class="modal-title fs-5" id="staticBackdropLabel">Attention</h1>
+												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											</div>
+											<div class="modal-body">
+												Êtes-vous sûr de vouloir supprimer cette section ?
+											</div>
+											<div class="modal-footer">
+												<a href="{{path('nationSound_contenu_edit_section_delete', {name:pageDefaultName, id : section.id})}}" class='btn btn-danger'>Supprimer</a>
+												<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Non</button>
+											</div>
+										</div>
+									</div>
+								</div>
+
 							</div>
 							<h3 class='text-center fw-bold text-white mt-2'>{{section.title}}</h3>
 							<p class=' p-3 fs-5 text-white fw-bold'>{{section.content}}</p>

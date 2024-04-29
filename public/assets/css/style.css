@@ -409,6 +409,9 @@ transform: scaleY(1.09);
 #sectionCharte {
   background-image: url(../image/charte.jpg);
 }
+#sectionNotification {
+  background-image: url(../image/notification.png);
+}
 #sectionLiens {
   background-image: url(../image/link.jpg);
 }

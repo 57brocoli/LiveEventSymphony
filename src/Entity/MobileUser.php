@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity\NationSound;
+namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
@@ -8,14 +8,16 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
 use App\Entity\Trait\CreatedAtTrait;
 use App\Repository\MobileUserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
-use App\Controller\GetByEmailAction;
 
 #[ORM\Entity(repositoryClass: MobileUserRepository::class)]
 #[ApiResource(
     operations:[
         new Get(normalizationContext:['groups' => ['getforMobileUser']]),
+        new GetCollection(normalizationContext:['groups' => ['getforDay']]),
         new Post()
     ]
 )]
@@ -40,10 +42,18 @@ class MobileUser
 
     #[ORM\Column(length: 255)]
     private ?string $password = null;
-
+    
     #[ORM\Column(nullable: true)]
     private ?int $phone = null;
+    
+    // #[ORM\OneToMany(mappedBy: 'authorMobile', targetEntity: Comment::class, orphanRemoval: true)]
+    // private Collection $comments;
 
+    // public function __construct()
+    // {
+    //     $this->comments = new ArrayCollection();
+    // }
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -84,8 +94,8 @@ class MobileUser
 
         return $this;
     }
-
-    public function getPhone(): ?int
+    
+        public function getPhone(): ?int
     {
         return $this->phone;
     }
@@ -101,4 +111,35 @@ class MobileUser
     {
         return $this->name;
     }
+    
+    // /**
+    //  * @return Collection<int, Comment>
+    //  */
+    // public function getComments(): Collection
+    // {
+    //     return $this->comments;
+    // }
+
+    // public function addComment(Comment $comment): static
+    // {
+    //     if (!$this->comments->contains($comment)) {
+    //         $this->comments->add($comment);
+    //         $comment->setAuthorMobile($this);
+    //     }
+
+    //     return $this;
+    // }
+
+    // public function removeComment(Comment $comment): static
+    // {
+    //     if ($this->comments->removeElement($comment)) {
+    //         // set the owning side to null (unless already changed)
+    //         if ($comment->getAuthorMobile() === $this) {
+    //             $comment->setAuthorMobile(null);
+    //         }
+    //     }
+
+    //     return $this;
+    // }
+
 }

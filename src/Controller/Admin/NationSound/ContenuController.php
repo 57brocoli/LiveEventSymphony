@@ -52,6 +52,7 @@ class ContenuController extends AbstractController
         ]);
     }
     
+    //Controller pour la page billetterie
     #[Route('/billetterie', name: 'contenu_billetterie')]
     public function billetterie(ViewRepository $vw, EventRepository $er, BilletRepository $br): Response
     {
@@ -403,8 +404,8 @@ class ContenuController extends AbstractController
     }
 
     // Controller pour l'edition d'une page
-    #[Route('/contenu/edit/{name?}/{id?}', name: 'contenu_edit')]
-    public function edit($name=null, View $view=null,  Request $request, EntityManagerInterface $em, SluggerInterface $slugger, PictureService $pictureService): Response
+    #[Route('/contenu/edit/{name?}-{id?}', name: 'contenu_edit')]
+    public function edit(Request $request, EntityManagerInterface $em, SluggerInterface $slugger, PictureService $pictureService, $name=null, View $view=null): Response
     {
         $new = false;
         if (!$view) {
@@ -458,8 +459,8 @@ class ContenuController extends AbstractController
     }
     
     // Controler pour les sections supplementaires d'une page
-    #[Route('/pagesection/edit/{name?}/{id?}', name: 'contenu_edit_section')]
-    public function editSection(PageSection $pageSection=null, Request $request, ViewRepository $vr, PictureService $pictureService, EntityManagerInterface $em, $name=null): Response
+    #[Route('/pagesection/edit/{name?}-{id?}', name: 'contenu_edit_section')]
+    public function editSection(Request $request, ViewRepository $vr, PictureService $pictureService, EntityManagerInterface $em, $name=null, PageSection $pageSection=null): Response
     {
         $page = $vr->findOneBy(['name'=>$name]);
         $slug = $page->getSlug();
@@ -525,11 +526,18 @@ class ContenuController extends AbstractController
     }
     
     #[Route('/pagesection/delete/{name?}/{id?}', name: 'contenu_edit_section_delete')]
-    public function deleteSection(PageSection $pageSection=null, ViewRepository $vr, EntityManagerInterface $em, $name=null): RedirectResponse
+    public function deleteSection(PageSection $pageSection=null, ViewRepository $vr, EntityManagerInterface $em, $name=null, PictureService $pictureService): RedirectResponse
     {
         $page = $vr->findOneBy(['name'=>$name]);
         $slug = $page->getSlug();
         if ($pageSection) {
+            $figures = $pageSection->getImages();
+            $folder = 'figure';
+            if ($figures) {
+                foreach ($figures as $figure) { 
+                    $pictureService->deleteSimpleImage($figure, $folder);
+                }
+            }
             $em->remove($pageSection);
             $em->flush();
             $this->addFlash('success','Section supprimer');

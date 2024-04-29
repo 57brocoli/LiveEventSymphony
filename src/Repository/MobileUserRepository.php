@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\NationSound\MobileUser;
+use App\Entity\MobileUser;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

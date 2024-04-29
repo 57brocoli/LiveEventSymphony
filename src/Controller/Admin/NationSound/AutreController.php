@@ -4,10 +4,13 @@ namespace App\Controller\Admin\NationSound;
 
 use App\Entity\NationSound\Lieu;
 use App\Entity\NationSound\Link;
+use App\Entity\Notification;
 use App\Form\LieuType;
 use App\Form\LinkType;
+use App\Form\NotificationType;
 use App\Repository\LieuRepository;
 use App\Repository\LinkRepository;
+use App\Repository\NotificationRepository;
 use App\Service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -143,6 +146,55 @@ class AutreController extends AbstractController
             $em->flush();
             $this->addFlash('success', 'Scene supprimer');
             return $this->redirectToRoute('nationSound_links');
+        }
+    }
+
+    #[Route('/notification', name : 'notification')]
+    public function notification(NotificationRepository $NR): Response
+    {
+        $notifications = $NR->findAll();
+        return $this->render('admin/NationSound/autre/notification.html.twig',[
+            'notifications'=>$notifications
+        ]);
+    }
+
+    #[Route('/notification/edit/{id?}', name : 'notification_edit')]
+    public function editNotification(Notification $notification=null, Request $request, EntityManagerInterface $em): Response
+    {
+        $new = false;
+        if (!$notification) {
+            $notification = new Notification();
+            $new = true;
+        }
+        $form = $this->createForm(NotificationType::class, $notification);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()&&$form->isValid()) {
+            $notification = $form->getData();
+            $em->persist($notification);
+            $em->flush();
+            if ($new) {
+                $this->addFlash('success','Notification Crée');
+            } else {
+                $this->addFlash('success','Notification enregistré');
+            }
+            return $this->redirectToRoute('nationSound_notification');
+        }
+        return $this->render('admin/NationSound/autre/editNotification.html.twig',[
+            'form' => $form
+        ]);
+    }
+
+    #[Route('/notification/delete/{id?}', name: 'delete_notification')]
+    public function deleteNotification(Notification $notification=null, EntityManagerInterface $em): RedirectResponse
+    {
+        if (!$notification) {
+            $this->addFlash('danger', 'Une erreur est surenu');
+            return $this->redirectToRoute('nationSound_links');
+        } else {
+            $em->remove($notification);
+            $em->flush();
+            $this->addFlash('success', 'Notification supprimer');
+            return $this->redirectToRoute('nationSound_notification');
         }
     }
 }

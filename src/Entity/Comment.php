@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(
     // normalizationContext:['groups' => ['read:collection']],
     operations:[
-        new Get(normalizationContext:['groups' => ['getforarticle']]),
+        new Get(normalizationContext:[]),
         new GetCollection(normalizationContext:['groups' => ['getforcomment','authorForComment','articleForComment']]),
         new Post()
     ]
@@ -28,7 +28,7 @@ class Comment
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['getforcomment'])]
+    #[Groups(['getforcomment', 'getforarticle'])]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -94,15 +94,4 @@ class Comment
         return $this;
     }
     
-    public function getAuthorMobile(): ?string
-    {
-        return $this->authorMobile;
-    }
-
-    public function setAuthorMobile(?string $authorMobile): static
-    {
-        $this->authorMobile = $authorMobile;
-
-        return $this;
-    }
 }

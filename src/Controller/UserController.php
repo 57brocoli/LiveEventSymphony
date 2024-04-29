@@ -87,6 +87,7 @@ class UserController extends AbstractController
             'name' => $users->getName(),
             'createdAt' => $users->getCreatedAt(),
             'phone' => $users->getPhone(),
+            'id' => $users->getId()
         ];
         return $this->json($user);
     }
