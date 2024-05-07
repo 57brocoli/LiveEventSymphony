@@ -18,7 +18,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 #[ApiResource(
-    // normalizationContext:['groups' => ['read:collection']], 
     operations:[
         new Get(normalizationContext:['groups' => ['getforarticle']]),
         new GetCollection(normalizationContext:['groups' => ['getforarticle','categoryForArticle','imageForArticle']]),
@@ -54,7 +53,6 @@ class Article
     private ?string $content = null;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
-    #[Groups(['getforarticle'])]
     private ?User $author = null;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
