@@ -4,7 +4,7 @@ namespace App\Controller\Admin\NationSound;
 
 use App\Entity\NationSound\Lieu;
 use App\Entity\NationSound\Link;
-use App\Entity\Notification;
+use App\Entity\NationSound\Notification;
 use App\Form\LieuType;
 use App\Form\LinkType;
 use App\Form\NotificationType;

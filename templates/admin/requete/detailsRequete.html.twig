@@ -9,18 +9,27 @@
 		<div class="row px-3 px-lg-0">
 			<article class="col-12">
 				<h2 class='fw-bold h1'>Details de la requete</h2>
+				<bouton class='btn btn-primary'>
+					<a href="{{path('app_detailsRequete')}}" class='text-white text-decoration-none'>Retour</a>
+				</bouton>
 				<hr>
-				<p class='fw-bold'>Identifiant de la requete : <span class='fw-normal text-primary'>{{requete.id}}</span>
-					</p>
-				<p class='fw-bold'>Adresse mail : <span class='fw-normal text-primary'>{{requete.email}}</span>
-					</p>
-				<p class='fw-bold'>Nom et pernom de l'envoyant : <span class='fw-normal text-primary'>{{requete.lastname}}
-					{{requete.firstname}}</span>
-					</p>
-				<p class='fw-bold'>Motif de la requête : <span class='fw-normal text-primary'>{{requete.motif}}</span>
-					</p>
-				<p class='fw-bold'>Contenu de la requête : <br> <span class='fw-normal text-primary'>{{requete.content}}</span>
-					</p>
+				<p class='fw-bold'>Identifiant de la requete :
+					<span class='fw-normal text-primary'>{{requete.id}}</span>
+				</p>
+				<p class='fw-bold'>Adresse mail :
+					<span class='fw-normal text-primary'>{{requete.email}}</span>
+				</p>
+				<p class='fw-bold'>Nom et pernom de l'envoyant :
+					<span class='fw-normal text-primary'>{{requete.lastname}}
+						{{requete.firstname}}</span>
+				</p>
+				<p class='fw-bold'>Motif de la requête :
+					<span class='fw-normal text-primary'>{{requete.motif}}</span>
+				</p>
+				<p class='fw-bold'>Contenu de la requête :
+					<br>
+					<span class='fw-normal text-primary'>{{requete.content}}</span>
+				</p>
 			</article>
 			<section>
 				<a href="{{path('app_reponseRequete', {id:requete.id})}}" class='btn btn-primary'>Répondre</a>

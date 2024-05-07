@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Notification;
+use App\Entity\NationSound\Notification;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -27,7 +27,8 @@ class NotificationType extends AbstractType
             ])
             // ->add('image')
             ->add('actived', CheckboxType::class,[
-                "label" => 'Activer la notification'
+                "label" => 'Activer la notification',
+                "required" => false
             ])
             ->add('Valider', SubmitType::class)
         ;

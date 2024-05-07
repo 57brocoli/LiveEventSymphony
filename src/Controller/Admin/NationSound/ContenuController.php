@@ -391,13 +391,13 @@ class ContenuController extends AbstractController
         }
     }
     
-    #[Route('/apropos', name: 'contenu_a-propos')]
+    #[Route('/apropos', name: 'contenu_apropos')]
     public function apropos(ViewRepository $vw): Response
     {
         //on récupère la page qui a pour name sponsor
-        $page = $vw->findOneBy(['name'=>'a-propos']);
+        $page = $vw->findOneBy(['name'=>'apropos']);
         return $this->render('admin/NationSound/contenu/page.html.twig', [
-            'pageDefaultName' => 'a-propos',
+            'pageDefaultName' => 'apropos',
             'title' => 'a-propos',
             'page' => $page,
         ]);

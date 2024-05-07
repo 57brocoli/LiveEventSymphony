@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\NationSound;
 
 use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Trait\CreatedAtTrait;

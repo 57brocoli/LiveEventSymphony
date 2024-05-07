@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Notification;
+use App\Entity\NationSound\Notification;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
