@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(
     operations:[
         new Get(normalizationContext:['groups' => ['getforarticle']]),
-        new GetCollection(normalizationContext:['groups' => ['getforarticle','categoryForArticle','imageForArticle']]),
+        new GetCollection(normalizationContext:['groups' => ['getforarticle']]),
     ]
 )]
 class Article
@@ -57,11 +57,11 @@ class Article
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(['categoryForArticle', 'getforarticle'])]
+    #[Groups(['getforarticle'])]
     private ?Category $categories = null;
 
     #[ORM\OneToMany(mappedBy: 'article', targetEntity: Image::class, orphanRemoval: true, cascade:['persist'])]
-    #[Groups(['imageForArticle', 'getforarticle'])]
+    #[Groups(['getforarticle'])]
     private Collection $images;
 
     #[ORM\Column(length: 255, nullable: true)]
