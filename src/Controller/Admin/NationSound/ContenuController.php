@@ -190,12 +190,9 @@ class ContenuController extends AbstractController
         $form->handleRequest($request);
         // Si le formulaire est envoyé et valide
         if ($form->isSubmitted()&&$form->isValid()) {
-            //on definit le dossier de destination
             $folder = 'articles';
-            //on recupère les images
             $images = $form->get('images')->getData();
             foreach($images as $image){
-                //on appelle le service d'ajout
                 $fichier = $pictureService->addImages($image, $folder, 1024, 576);
                 $img = new Image();
                 $img->setName($fichier);
@@ -207,25 +204,17 @@ class ContenuController extends AbstractController
                 $article->setFeaturedImage($newFileName);
             };
             $article = $form->getData();
-            //on génère le slug
             $slug = $slugger->slug($article->getTitle());
             $article->setSlug($slug);
-            //on attribut l'autheur
             $article->setAuthor($this->getUser());
-            //on attribut l'évènement
             $article->setRelatedEvent($event);
-            //on persist
             $em->persist($article);
             $em->flush();
-            //on envoie le mail aux abonnées
             $valider = $form->get('Valider')->getData();
             if ($valider) {
-                //on recupère les données du formulaire
                 $Subject = $form->get('Subject')->getData();
                 $Content = $form->get('Content')->getData();
-                //on récupère les abonnées
                 $abonnées = $userRepository->findBy(['isSubscriber' => true]);
-                //on envoie le mail à chaque abonnées
                 foreach ($abonnées as $abonnée) { 
                     $mail->send(
                         'news@liveevent.fr',
