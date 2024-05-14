@@ -34,6 +34,10 @@
 			{% endif %}
 			{# Les notifications #}
 			{% include '_partials/_flash.html.twig' %}
+			{# modal pour les recruteurs #}
+			{% if app.user and app.user.email is same as "nukiumtest@gmail.com" %}
+				{% include '_partials/_modalRecruteurs.html.twig' %}
+			{% endif %}
 			{# Le contenu de la page #}
 			{% block body %}{% endblock %}
 			{# Le footer #}
@@ -43,4 +47,5 @@
 		</main>
 	</body>
 	<script src="{{asset('assets/js/bootstrap.bundle.js')}}" crossorigin="anonymous"></script>
+	<script src="{{asset('assets/js/modalScript.js')}}"></script>
 </html>
