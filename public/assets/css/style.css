@@ -221,6 +221,11 @@ transform: scaleY(1.09);
     margin-top: -250px;
   }
 }
+@media screen and (max-width: 380px) {
+  #article1section1 {
+    margin-top: -240px;
+  }
+}
 #imgSection1EventAccueil{
   position: absolute;
   max-width: 450px;
@@ -238,6 +243,12 @@ transform: scaleY(1.09);
     right: 0;
     transform: translate(0, -110%);
     max-width: 480px;
+    top : 420px
+  }
+}
+@media screen and (max-width: 380px) {
+  #imgSection1EventAccueil {
+    top: 200px;
   }
 }
 #backgroundImgEvent{
