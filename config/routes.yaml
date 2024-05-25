@@ -7,6 +7,5 @@ get_users_by_email:
     path: '/api/users/by-email/{email}'
     controller: 'App\Controller\UserController::getUsersByEmail'
     methods: ['GET']
-# api_login_check:
-#     path: /api/login_check
-#     methods: ['POST']
+api_login_check:
+    path: /webuser/login_check
