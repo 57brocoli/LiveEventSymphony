@@ -16,18 +16,12 @@
 			<section class='my-3'>{% include '_partials/_dashboardNationSound.html.twig' %}</section>
 			<section class="row pt-4">
 				{{ form_start(form) }}
-
-				{# section pour le titre #}
 				<section>
 					{{ form_row(form.title) }}
 				</section>
-
-				{# section pour l'introduction #}
 				<section>
 					{{ form_row(form.introduction) }}
 				</section>
-
-				{# section pour le contenu #}
 				<section>
 					{{ form_row(form.content) }}
 				</section>
@@ -123,7 +117,6 @@
 					{% endif %}
 				</section>
 
-				{# section pour une video #}
 				<section>
 					{{ form_label(form.video, 'Video' ) }}
 					<span>
@@ -152,19 +145,14 @@
 					{{ form_row(form.video) }}
 				</section>
 
-				{# section pour les categories #}
 				<section>
 					{{ form_row(form.categories) }}
 				</section>
-
-				{# section pour l'evenement en relation #}
 				{% if event %}
 					<section class='d-none'>
 						{{ form_row(form.relatedEvent) }}
 					</section>
 				{% endif %}
-
-
 				{% if new %}
 					<section class='container border rounded p-4 my-4'>
 						{{ form_row(form.Valider) }}

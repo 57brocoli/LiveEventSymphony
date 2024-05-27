@@ -22,28 +22,28 @@ class Episode
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['getforEpisode','getforDay','getforLieu','getforProg', 'getforArtiste'])]
+    #[Groups(['getforEpisode','getforDay','getforProg', 'getforArtiste', 'getforLieu'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups(['getforEpisode','getforDay', 'getforLieu','getforProg', 'getforArtiste'])]
+    #[Groups(['getforEpisode','getforDay','getforProg', 'getforArtiste', 'getforLieu'])]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
-    #[Groups(['getforEpisode','getforDay', 'getforLieu','getforProg', 'getforArtiste'])]
+    #[Groups(['getforEpisode','getforDay','getforProg', 'getforArtiste', 'getforLieu'])]
     private ?\DateTimeInterface $hour = null;
 
     #[ORM\ManyToOne(inversedBy: 'episodes')]
     // #[ORM\JoinColumn(nullable: false)]
-    #[Groups(['getforEpisode','getforDay', 'getforLieu','getforProg'])]
+    #[Groups(['getforEpisode','getforDay','getforProg', 'getforLieu'])]
     private ?Artiste $artiste = null;
 
     #[ORM\ManyToOne(inversedBy: 'episode')]
-    #[Groups(['getforEpisode', 'getforLieu','getforProg', 'getforArtiste'])]
+    #[Groups(['getforEpisode', 'getforArtiste', 'getforLieu'])]
     private ?Day $day = null;
 
     #[ORM\ManyToOne(inversedBy: 'episodes')]
-    #[Groups(['getforEpisode', 'getforLieu','getforDay','getforProg', 'getforArtiste'])]
+    #[Groups(['getforEpisode','getforDay','getforProg', 'getforArtiste'])]
     private ?Lieu $lieu = null;
 
     public function getId(): ?int

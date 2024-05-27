@@ -28,7 +28,7 @@ class Lieu
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups(['getforDay', 'getforLieu', 'getforEpisode','getforProg','getforEpisode'])]
+    #[Groups(['getforDay', 'getforLieu', 'getforEpisode','getforProg','getforArtiste'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 50, nullable: true)]
@@ -48,7 +48,7 @@ class Lieu
     private ?string $GPSPtLng = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups(['getforDay', 'getforLieu','getforProg','getforEpisode'])]
+    #[Groups(['getforDay', 'getforLieu','getforProg','getforEpisode', 'getforArtiste'])]
     private ?string $featuredImage = null;
     
     #[ORM\OneToMany(mappedBy: 'lieu', targetEntity: Link::class)]
@@ -56,7 +56,7 @@ class Lieu
     private Collection $links;
 
     #[ORM\OneToMany(mappedBy: 'lieu', targetEntity: Episode::class)]
-    #[Groups(['getforDay','getforLieu'])]
+    #[Groups(['getforLieu'])]
     private Collection $episodes;
 
     public function __construct()

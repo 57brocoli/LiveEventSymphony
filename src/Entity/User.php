@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Trait\CreatedAtTrait;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -14,6 +15,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     use CreatedAtTrait;
@@ -21,7 +23,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['authorForComment'])]
+    // [Groups(['authorForComment'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
@@ -37,11 +39,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 100)]
-    #[Groups(['authorForComment'])]
+    #[Groups(['authorForComment', 'getforarticle'])]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 100)]
-    #[Groups(['authorForComment'])]
+    #[Groups(['authorForComment','getforarticle'])]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 255)]

@@ -8,8 +8,6 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
 use App\Entity\Trait\CreatedAtTrait;
 use App\Repository\MobileUserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -141,5 +139,4 @@ class MobileUser
 
     //     return $this;
     // }
-
 }

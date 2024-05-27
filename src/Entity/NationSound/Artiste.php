@@ -44,7 +44,7 @@ class Artiste
     private ?string $featuredImage = null;
 
     #[ORM\OneToMany(mappedBy: 'artiste', targetEntity: Episode::class)]
-    #[Groups(['getforArtiste', 'getforDay', 'getforLieu', 'getforEpisode'])]
+    #[Groups(['getforArtiste'])]
     private Collection $episodes;
 
     #[ORM\OneToMany(mappedBy: 'artiste', targetEntity: Link::class)]

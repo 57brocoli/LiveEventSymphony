@@ -97,9 +97,9 @@
 							<h2 class='h1 fw-bolder p-3 mt-4'>Tous nos partenaires</h2>
 							<p class='px-3 fs-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus aliquid, odio porro sint provident nam. Dolorem culpa reiciendis minus consequatur, expedita dignissimos, incidunt blanditiis distinctio aliquam provident modi esse, repudiandae et in explicabo nostrum pariatur voluptates voluptatem! Voluptatibus, blanditiis corrupti. Ipsum quo magnam explicabo sunt enim dolor nobis nesciunt sapiente.</p>
 							<div class='text-lg-end text-center pt-lg-3 pe-lg-5'>
-								<a href="" class='px-3'>
-									<button class='btn btn-lg btn-danger mb-3'>C'est parti</button>
-								</a>
+								{#<a href="" class='px-3'>#}
+								{#	<button class='btn btn-lg btn-danger mb-3'>C'est parti</button>#}
+								{#</a>#}
 							</div>
 						</div>
 						{# col droite #}
@@ -153,10 +153,10 @@
 					<h3 class='px-lg-5 display-4 '>Suivez-nous</h3>
 					<h2 class='px-lg-5 display-3'>#LiveEvent</h2>
 					<ul class='px-lg-5 px-4 d-flex justify-content-evenly list-unstyled '>
-						<li class=''><img src="{{asset('assets/image/facebook_logo.png')}}" alt="reseausociauximage" width='50'></li>
-						<li class=''><img src="{{asset('assets/image/instagram_logo.png')}}" alt="reseausociauximage" width='50'></li>
-						<li class=''><img src="{{asset('assets/image/snapchat_logo.png')}}" alt="reseausociauximage" width='50'></li>
-						<li class=''><img src="{{asset('assets/image/youtube_logo.png')}}" alt="reseausociauximage" width='50'></li>
+						<li><img src="{{asset('assets/image/facebook_logo.png')}}" alt="reseausociauximage" width='50'></li>
+						<li><img src="{{asset('assets/image/instagram_logo.png')}}" alt="reseausociauximage" width='50'></li>
+						<li><img src="{{asset('assets/image/snapchat_logo.png')}}" alt="reseausociauximage" width='50'></li>
+						<li><img src="{{asset('assets/image/youtube_logo.png')}}" alt="reseausociauximage" width='50'></li>
 					</ul>
 				</div>
 				<div class='col-12 col-lg-6 px-5 text-center'>
@@ -172,5 +172,7 @@
 				</div>
 			</article>
 		</section>
+
+
 	</main>
 {% endblock %}

@@ -36,7 +36,7 @@ class RegistrationController extends AbstractController
             $isSub = $form->get('newLetter')->getData();
             if ($isSub) {
                 $user->setIsSubscriber(true);
-            }else{
+            } else {
                 $user->setIsSubscriber(false);
             }
 
@@ -58,7 +58,7 @@ class RegistrationController extends AbstractController
             $token = $jwt->generate($header, $payload, $this->getParameter('app.jwtsecret'));
 
             $mail->send(
-                'admin@pixelevent.site',
+                'no-reply@monsite.fr',
                 $user->getEmail(),
                 'Activation de votre compte sur le site Live evnet',
                 'register',
@@ -67,14 +67,12 @@ class RegistrationController extends AbstractController
                     'token' => $token
                 ]
                 );
-
             return $userAuthenticator->authenticateUser(
                 $user,
                 $authenticator,
                 $request
             );
         }
-
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);

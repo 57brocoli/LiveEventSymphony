@@ -148,7 +148,8 @@ class AutreController extends AbstractController
             return $this->redirectToRoute('nationSound_links');
         }
     }
-
+    
+    //controller des notifications
     #[Route('/notification', name : 'notification')]
     public function notification(NotificationRepository $NR): Response
     {
@@ -158,6 +159,7 @@ class AutreController extends AbstractController
         ]);
     }
 
+    //controller pour ajouter une notification
     #[Route('/notification/edit/{id?}', name : 'notification_edit')]
     public function editNotification(Notification $notification=null, Request $request, EntityManagerInterface $em): Response
     {
@@ -184,6 +186,7 @@ class AutreController extends AbstractController
         ]);
     }
 
+    //controller pour supprimer une notification
     #[Route('/notification/delete/{id?}', name: 'delete_notification')]
     public function deleteNotification(Notification $notification=null, EntityManagerInterface $em): RedirectResponse
     {

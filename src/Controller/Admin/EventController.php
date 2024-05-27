@@ -81,7 +81,7 @@ class EventController extends AbstractController
                 //on envoie le mail
                 foreach($abonnées as $abonnée){
                     $mailer->send(
-                        'admin@pixelevent.site',
+                        'news@liveevent.fr',
                         $abonnée->getEmail(),
                         $subject,
                         'newletter',

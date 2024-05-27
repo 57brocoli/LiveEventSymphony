@@ -103,7 +103,7 @@ class ArticlesController extends AbstractController{
                 //on envoie le mail
                 foreach ($abonnées as $abonnée) { 
                     $mail->send(
-                        'admin@pixelevent.siter',
+                        'news@liveevent.fr',
                         $abonnée->getEmail(),
                         $Subject,
                         'newletter',

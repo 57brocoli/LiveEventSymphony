@@ -12,7 +12,6 @@ p, a, h1, h2, h3, h4, span{
 #main{
   padding-top: 67px;
   min-height: 100vh;
-  /* width: 100%; */
   display: flex;
   flex-direction: column;
 }
@@ -243,7 +242,7 @@ transform: scaleY(1.09);
     right: 0;
     transform: translate(0, -110%);
     max-width: 480px;
-    top : 420px
+    top: 420px;
   }
 }
 @media screen and (max-width: 380px) {
@@ -312,13 +311,12 @@ transform: scaleY(1.09);
     width: 80%;
   }
 }
+#ouvert{
+  background-color: #d3d3d3;
+}
 
-.modal-window {
-  /* position: fixed; */
-  /* background-color: rgba(255, 255, 255, 0.25); */
-  /* top: 0; */
+.modalRec-window {
   right: 0;
-  /* bottom: 0; */
   left: 0;
   z-index: 7;
   visibility: hidden;
@@ -342,12 +340,12 @@ transform: scaleY(1.09);
   }
 }
 @media screen and (max-width: 612px) {
-  .modal-window > div {
+  .modalRec-window > div {
     width: 400px;
   }
 }
 
-.modal-close {
+.modalRec-close {
   color: #aaa;
   line-height: 50px;
   font-size: 80%;
@@ -362,12 +360,8 @@ transform: scaleY(1.09);
 }
 
 /* Demo Styles */
-.modal-window div:not(:last-of-type) {
+.modalRec-window div:not(:last-of-type) {
   margin-bottom: 15px;
-}
-
-#ouvert{
-  background-color: #d3d3d3;
 }
 
 
@@ -385,7 +379,7 @@ transform: scaleY(1.09);
   background-size: cover;
 }
 #sectionJournee {
-  background-image: url(../image/logo.jpg)
+  background-image: url(../image/logo1.jpg)
 }
 #sectionEpisode {
   background-image: url(../image/header2.jpg);
@@ -415,7 +409,7 @@ transform: scaleY(1.09);
   background-image: url(../image/leaves_plant_green_136320_1024x768.jpg);
 }
 #sectionApropos {
-  background-image: url(../image/logo.jpg);
+  background-image: url(../image/logo1.jpg);
 }
 #sectionCharte {
   background-image: url(../image/charte.jpg);
@@ -441,8 +435,6 @@ transform: scaleY(1.09);
   width: 100%;
 }
 
-/* style pour la page test */
-
 /* style pour la page des section de page */
 .displayt{
   background-image: url(../image/Astronote.jpg);
@@ -462,7 +454,7 @@ transform: scaleY(1.09);
 }
 
 /* Style de base pour la modal */
-.modal {
+.modalRec {
   display: none; /* Par défaut, cachez la modal */
   position: fixed; 
   z-index: 1; 
@@ -476,7 +468,7 @@ transform: scaleY(1.09);
 }
 
 /* Contenu de la modal */
-.modal-content {
+.modalRec-content {
   background-color: #fefefe;
   margin: 15% auto; 
   padding: 20px;

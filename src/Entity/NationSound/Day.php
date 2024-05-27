@@ -27,7 +27,7 @@ class Day
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups(['getforDay', 'getforLieu','getforProg','getforEpisode'])]
+    #[Groups(['getforDay', 'getforLieu','getforProg','getforEpisode','getforLieu'])]
     private ?string $name = null;
 
     #[ORM\OneToMany(mappedBy: 'day', targetEntity: Episode::class)]

@@ -9,7 +9,7 @@ var openExplication = document.getElementsByClassName("openExplication")[0];
 
 // Lorsque l'utilisateur clique sur le bouton, ouvre la modal 
 openExplication.onclick = function() {
-    modal.style.display = "block";
+  modal.style.display = "block";
 }
 function openModal() {
   modal.style.display = "block";

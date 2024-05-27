@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(
     // normalizationContext:['groups' => ['read:collection']],
     operations:[
-        new Get(normalizationContext:[]),
+        new Get(normalizationContext:['groups' => ['getforarticle']]),
         new GetCollection(normalizationContext:['groups' => ['getforcomment','authorForComment','articleForComment']]),
         new Post()
     ]
@@ -28,20 +28,20 @@ class Comment
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['getforcomment', 'getforarticle'])]
+    #[Groups(['getforcomment','getforarticle'])]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups(['getforcomment'])]
+    #[Groups(['getforcomment','getforarticle'])]
     private ?string $content = null;
 
     #[ORM\ManyToOne(inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: true)]
-    #[Groups(['authorForComment'])]
+    #[Groups(['authorForComment','getforarticle'])]
     private ?User $author = null;
     
     #[ORM\Column(length: 50, nullable: true)]
-    #[Groups(['authorForComment'])]
+    #[Groups(['authorForComment','getforarticle'])]
     private ?string $authorMobile = null;
 
     #[ORM\ManyToOne(inversedBy: 'comments')]
@@ -49,6 +49,9 @@ class Comment
     #[Groups(['getforcomment'])]
     private ?Article $relatedArticle = null;
 
+    // #[ORM\ManyToOne(inversedBy: 'comments')]
+    // private ?MobileUser $authorMobile = null;
+    
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
@@ -93,5 +96,29 @@ class Comment
 
         return $this;
     }
+    
+    public function getAuthorMobile(): ?string
+    {
+        return $this->authorMobile;
+    }
+
+    public function setAuthorMobile(?string $authorMobile): static
+    {
+        $this->authorMobile = $authorMobile;
+
+        return $this;
+    }
+    
+    // public function getAuthorMobile(): ?MobileUser
+    // {
+    //     return $this->authorMobile;
+    // }
+
+    // public function setAuthorMobile(?MobileUser $authorMobile): static
+    // {
+    //     $this->authorMobile = $authorMobile;
+
+    //     return $this;
+    // }
     
 }

@@ -2,12 +2,11 @@
 
 namespace App\Entity;
 
-
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\BackgroundImageRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BackgroundImageRepository::class)]
-
 class BackgroundImage
 {
     #[ORM\Id]

@@ -21,6 +21,7 @@ class Figure
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['getforView'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]

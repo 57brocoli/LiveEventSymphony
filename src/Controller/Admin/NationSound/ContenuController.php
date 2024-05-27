@@ -3,39 +3,43 @@
 namespace App\Controller\Admin\NationSound;
 
 use App\Entity\Article;
+use App\Entity\BackgroundImage;
+use App\Entity\Billet;
+use App\Entity\FAQ;
 use App\Entity\NationSound\Figure;
 use App\Entity\Image;
 use App\Entity\ImageSponsor;
+use App\Entity\NationSound\PageSection;
+use App\Entity\Page;
 use App\Entity\NationSound\View;
 use App\Entity\Sponsor;
-use App\Entity\Billet;
-use App\Entity\FAQ;
-use App\Entity\NationSound\PageSection;
-use App\Form\SponsorFormType;
-use App\Form\ViewType;
+use App\Form\ArticleFormType;
 use App\Form\BilletType;
 use App\Form\FAQType;
+use App\Form\PageFormType;
 use App\Form\PageSectionType;
-use App\Form\ArticleFormType;
+use App\Form\SponsorFormType;
+use App\Form\ViewType;
 use App\Repository\ArticleRepository;
-use App\Repository\EventRepository;
-use App\Repository\SponsorRepository;
-use App\Repository\ViewRepository;
 use App\Repository\BilletRepository;
-use App\Repository\FAQRepository;
 use App\Repository\DayRepository;
+use App\Repository\EventRepository;
+use App\Repository\FAQRepository;
+use App\Repository\PageRepository;
+use App\Repository\SponsorRepository;
 use App\Repository\UserRepository;
+use App\Repository\ViewRepository;
 use App\Service\PictureService;
 use App\Service\SendMailService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\String\Slugger\SluggerInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 #[Route('/admin/nationsound', name: 'nationSound_'), IsGranted('ROLE_ADMIN')]
 class ContenuController extends AbstractController
@@ -52,7 +56,6 @@ class ContenuController extends AbstractController
         ]);
     }
     
-    //Controller pour la page billetterie
     #[Route('/billetterie', name: 'contenu_billetterie')]
     public function billetterie(ViewRepository $vw, EventRepository $er, BilletRepository $br): Response
     {
@@ -68,7 +71,7 @@ class ContenuController extends AbstractController
             'billets' => $billets,
         ]);
     }
-    
+
     #[Route('/billetterie/edit/{id?}', name: 'contenu_billetterie_edit')]
     public function billetEdit(Billet $billet=null, EventRepository $er, Request $request, EntityManagerInterface $em, PictureService $pictureService): Response
     {
@@ -96,9 +99,9 @@ class ContenuController extends AbstractController
             $em->persist($billet);
             $em->flush();
             if ($new) {
-                $this->addFlash('success','Billet crée');
+                $this->addFlash('succes','Billet crée');
             } else {
-                $this->addFlash('success','Billet mis-à-jour');
+                $this->addFlash('succes','Billet mis-à-jour');
             }
             return $this->redirectToRoute('nationSound_contenu_billetterie');
         }
@@ -111,16 +114,16 @@ class ContenuController extends AbstractController
     }
 
     #[Route('/billetterie/{id?}', name: 'contenu_billetterie_details')]
-    public function billetterieDetails(Billet $billet=null, BilletRepository $br): Response
+    public function billetDetails(Billet $billet=null, BilletRepository $br): Response
     {
         $billet = $br->findOneBy(['id'=>$billet]);
-        return $this->render('admin/NationSound/pagedetails.html.twig', [
+        return $this->render('admin/NationSound/contenu/pagedetails.html.twig', [
             'data' => $billet,
             'folder' => 'assets/uploads/billet/',
             'file' => $billet->getFeaturedImage(),
         ]);
     }
-    
+
     #[Route('/billetterie/delete/{id?}', name: 'contenu_billetterie_delete')]
     public function billetDelete(Billet $billet=null, EntityManagerInterface $em, PictureService $pictureService): RedirectResponse
     {
@@ -136,7 +139,7 @@ class ContenuController extends AbstractController
             return $this->redirectToRoute('nationSound_contenu_billetterie');
         }
     }
-    
+
     // Controller pour la page Programme
     #[Route('/programme', name: 'contenu_programme')]
     public function programme(ViewRepository $vw, DayRepository $dr): Response
@@ -153,8 +156,8 @@ class ContenuController extends AbstractController
             'days' => $days
         ]);
     }
-    
-    // Controller pour la page actualité FAQ
+
+    // Controller pour la page actualité faq
     #[Route('/actualite', name: 'contenu_actualite')]
     public function information(ViewRepository $vw, FAQRepository $fr, EventRepository $er, ArticleRepository $ar): Response
     {
@@ -173,7 +176,7 @@ class ContenuController extends AbstractController
             'FAQs' => $FAQs
         ]);
     }
-    
+
     #[Route('/actualite/article/edit/{id?}', name: 'contenu_actualite_article_edit')]
     public function informationArticleEdit(Article $article=null, Request $request, PictureService $pictureService, SluggerInterface $slugger, EntityManagerInterface $em, SendMailService $mail, UserRepository $userRepository, EventRepository $er): Response
     {
@@ -267,7 +270,7 @@ class ContenuController extends AbstractController
     }
 
     #[Route('/actualite/FAQ/edit/{id?}', name: 'contenu_actualite_FAQ_edit')]
-    public function informationEdit(FAQ $faq=null, Request $request, EntityManagerInterface $em): Response
+    public function informationFAQEdit(FAQ $faq=null, Request $request, EntityManagerInterface $em): Response
     {
         $new = false;
         if (!$faq) {
@@ -291,7 +294,7 @@ class ContenuController extends AbstractController
             'form'=>$form
         ]);
     }
-    
+
     #[Route('/actualite/delete/{id?}', name: 'contenu_actualite_delete')]
     public function informationDelete(FAQ $faq=null, EntityManagerInterface $em): RedirectResponse
     {
@@ -305,7 +308,8 @@ class ContenuController extends AbstractController
             return $this->redirectToRoute('nationSound_contenu_actualite');
         }
     }
-    
+
+    // Controller pour la page sponsor
     #[Route('/sponsor', name: 'contenu_sponsor')]
     public function sponsor(ViewRepository $vw, SponsorRepository $sr, EventRepository $er): Response
     {
@@ -390,7 +394,8 @@ class ContenuController extends AbstractController
             return $this->redirectToRoute('nationSound_contenu_sponsor');
         }
     }
-    
+
+    // Controller pour la page a propos contact
     #[Route('/apropos', name: 'contenu_apropos')]
     public function apropos(ViewRepository $vw): Response
     {
@@ -448,7 +453,7 @@ class ContenuController extends AbstractController
             $em->persist($view);
             $em->flush();
             $this->addFlash('success','Modifications enregistrées');
-            return $this->redirectToRoute("nationSound_contenu_$slug");
+            return $this->redirectToRoute("nationSound_contenu_$name");
         }
         return $this->render('admin/NationSound/contenu/editPage.html.twig', [
             'form' => $form,
@@ -457,10 +462,10 @@ class ContenuController extends AbstractController
             'name' => $name
         ]);
     }
-    
+
     // Controler pour les sections supplementaires d'une page
     #[Route('/pagesection/edit/{name?}-{id?}', name: 'contenu_edit_section')]
-    public function editSection(Request $request, ViewRepository $vr, PictureService $pictureService, EntityManagerInterface $em, $name=null, PageSection $pageSection=null): Response
+    public function editSection(Request $request, ViewRepository $vr, PictureService $pictureService ,EntityManagerInterface $em, $name=null, PageSection $pageSection=null): Response
     {
         $page = $vr->findOneBy(['name'=>$name]);
         $slug = $page->getSlug();
@@ -491,7 +496,8 @@ class ContenuController extends AbstractController
             } else {
                 $this->addFlash('success','Section mis-à-jour');
             }
-            return $this->redirectToRoute("nationSound_contenu_$slug");
+            return $this->redirectToRoute("nationSound_contenu_$slug", [
+            ]);
         }
         return $this->render('admin/NationSound/contenu/editSection.html.twig', [
             'form' => $form,
@@ -500,7 +506,6 @@ class ContenuController extends AbstractController
             'section' => $pageSection
         ]);
     }
-    
     #[Route('/pagesection/delete/image/{pagename}/{id}', name:'contenu_delete_section_image', methods:['DELETE'])]
     public function deleteImage(Figure $image, Request $request, EntityManagerInterface $em, PictureService $pictureService): JsonResponse
     {
@@ -542,10 +547,11 @@ class ContenuController extends AbstractController
             $em->flush();
             $this->addFlash('success','Section supprimer');
             return $this->redirectToRoute("nationSound_contenu_$slug");
-        } else {
-            $this->addFlash('danger','Une erreur est survenu');
-            return $this->redirectToRoute("nationSound_contenu_$slug");
         }
+        $this->addFlash('danger','Une erreur est survenu');
+        return $this->redirectToRoute("nationSound_contenu_$slug");
         
     }
+    
+
 }

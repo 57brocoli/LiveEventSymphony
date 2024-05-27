@@ -23,7 +23,7 @@ class ContactController extends AbstractController
             $requestMessage=$form->getData();
             $em->persist($requestMessage);
             $em->flush();
-
+            $email = $form->get('email')->getData();
             $context = [
                 'content' => $form->get('content')->getData(),
                 'lastname' => $form->get('lastname')->getData(),
@@ -33,7 +33,7 @@ class ContactController extends AbstractController
             ];
             $mail->send(
                 'admin@pixelevent.site',
-                'admin@pixelevent.site',
+                $email,
                 'Message utilisateur',
                 'requete_utilisateur',
                 $context

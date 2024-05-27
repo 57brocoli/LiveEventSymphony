@@ -41,14 +41,15 @@ class RequeteController extends AbstractController
         ]);
     }
     #[Route('/reponse/{id}', name:'reponseRequete')]
-    public function reponseRequete(EntityRequest $requete, ReponseRequeteFormType $reponseRequeteFormType, Request $request, SendMailService $mail, EntityManagerInterface $em):Response
+    public function reponseRequete(EntityRequest $requete, Request $request, SendMailService $mail, EntityManagerInterface $em):Response
     {
         $reponse = $this->createForm(reponseRequeteFormType::class);
         $reponse->handleRequest($request);
-        $email = $requete->getEmail();
+        // $email = $requete->getEmail();
         if ($reponse->isSubmitted()&&$reponse->isValid()) {
             $motif = $reponse->get('motif')->getData();
             $context = ['content' => $reponse->get('content')->getData()];
+            $email = $reponse->get('email')->getData();
             $mail->send(
                 'admin@pixelevent.site',
                 $email,
@@ -59,7 +60,7 @@ class RequeteController extends AbstractController
             $requete->setStatut(true);
             $em->persist($requete);
             $em->flush();
-            $this->addFlash('success', 'Reponse envoyer à $email');
+            $this->addFlash('success', "Reponse envoyer à $email");
             return $this->redirectToRoute('app_requete');
         }
         return $this->render('admin/requete/reponseRequete.html.twig',[

@@ -28,7 +28,6 @@ class PageSection
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'pageSections')]
-    #[Groups(['getforView'])]
     private ?View $view = null;
 
     #[ORM\Column(length: 255)]
@@ -44,8 +43,9 @@ class PageSection
     private Collection $images;
 
     #[ORM\Column(length: 50)]
+    #[Groups(['getforView'])]
     private ?string $display = null;
-
+    
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -121,7 +121,7 @@ class PageSection
 
         return $this;
     }
-
+    
     public function getDisplay(): ?string
     {
         return $this->display;

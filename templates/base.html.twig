@@ -30,7 +30,13 @@
 			id="main">
 			{# si l'utilisateur n'a pas valider son compte #}
 			{% if app.user and app.user.isVerified==false %}
-				{% include '_partials/_comptNonActiver.html.twig' %}
+				<section class='alert alert-warning alert-dismissible mb-0' role='alert'>
+					<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='close'></button>
+					<article class="alert-message">
+						<strong>Votre compte n'est pas activer</strong>,
+						<a href="{{path('resend_verif')}}">renvoyer le lien d'activation</a>
+					</article>
+				</section>
 			{% endif %}
 			{# Les notifications #}
 			{% include '_partials/_flash.html.twig' %}
@@ -38,14 +44,13 @@
 			{% if app.user and app.user.email is same as "nukiumtest@gmail.com" %}
 				{% include '_partials/_modalRecruteurs.html.twig' %}
 			{% endif %}
-			{# Le contenu de la page #}
 			{% block body %}{% endblock %}
-			{# Le footer #}
 			<footer>
 				{% include '_partials/_footer.html.twig' %}
 			</footer>
+
 		</main>
+		<script src="{{asset('assets/js/bootstrap.bundle.js')}}" crossorigin="anonymous"></script>
+		<script src="{{asset('assets/js/modalScript.js')}}"></script>
 	</body>
-	<script src="{{asset('assets/js/bootstrap.bundle.js')}}" crossorigin="anonymous"></script>
-	<script src="{{asset('assets/js/modalScript.js')}}"></script>
-</html>
+</html></body></html>
