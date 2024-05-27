@@ -315,7 +315,7 @@ transform: scaleY(1.09);
   background-color: #d3d3d3;
 }
 
-.modalRec-window {
+.modal-window {
   right: 0;
   left: 0;
   z-index: 7;
@@ -340,12 +340,12 @@ transform: scaleY(1.09);
   }
 }
 @media screen and (max-width: 612px) {
-  .modalRec-window > div {
+  .modal-window > div {
     width: 400px;
   }
 }
 
-.modalRec-close {
+.modal-close {
   color: #aaa;
   line-height: 50px;
   font-size: 80%;
@@ -360,7 +360,7 @@ transform: scaleY(1.09);
 }
 
 /* Demo Styles */
-.modalRec-window div:not(:last-of-type) {
+.modal-window div:not(:last-of-type) {
   margin-bottom: 15px;
 }
 
